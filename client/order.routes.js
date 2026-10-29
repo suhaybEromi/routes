@@ -29,11 +29,4 @@ router.post(
   asyncHandler(orderController.createOrder),
 );
 
-// router.put(
-//   "/:orderId/cancel",
-//   clientAuthMiddleware,
-//   authorizeRoles("client"),
-//   asyncHandler(orderController.cancelOrder),
-// );
-
 export default router;

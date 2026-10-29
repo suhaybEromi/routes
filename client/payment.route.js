@@ -1,23 +1,25 @@
 import express from "express";
-import paymentController from "../../controllers/client/payment.controller.js";
 
+import paymentController from "../../controllers/client/payment.controller.js";
 import asyncHandler from "../../middlewares/asyncHandler.js";
 import { clientAuthMiddleware } from "../../middlewares/auth.js";
 import authorizeRoles from "../../middlewares/authorizeRoles.js";
 
 const router = express.Router();
 
-router.post("/rasedi/callback", asyncHandler(paymentController.rasediCallback));
+router.post("/nass/callback", asyncHandler(paymentController.nassCallback));
 
+// Authenticated customer creates payment
 router.post(
-  "/rasedi/:orderId",
+  "/nass/:orderId",
   clientAuthMiddleware,
   authorizeRoles("client"),
   asyncHandler(paymentController.createPayment),
 );
 
+// Authenticated customer verifies payment
 router.get(
-  "/rasedi/:orderId/verify",
+  "/nass/:orderId/verify",
   clientAuthMiddleware,
   authorizeRoles("client"),
   asyncHandler(paymentController.verifyPayment),

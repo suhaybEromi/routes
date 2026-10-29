@@ -3,7 +3,6 @@ const router = express.Router();
 
 import productController from "../../controllers/client/product.controller.js";
 import asyncHandler from "../../middlewares/asyncHandler.js";
-import { clientAuthMiddleware } from "../../middlewares/auth.js";
 
 router.get("/", asyncHandler(productController.getProduct));
 
@@ -13,5 +12,10 @@ router.get(
 );
 
 router.get("/:id", asyncHandler(productController.getProductById));
+
+router.get(
+  "/brownstore/products",
+  asyncHandler(productController.getProductBrownStore),
+);
 
 export default router;

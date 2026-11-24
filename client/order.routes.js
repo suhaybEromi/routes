@@ -9,6 +9,13 @@ import authorizeRoles from "../../middlewares/authorizeRoles.js";
 const router = express.Router();
 
 router.get(
+  "/delivery-fee",
+  clientAuthMiddleware,
+  authorizeRoles("client"),
+  asyncHandler(orderController.getCheckoutDeliveryFee),
+);
+
+router.get(
   "/",
   clientAuthMiddleware,
   authorizeRoles("client"),

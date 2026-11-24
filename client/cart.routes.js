@@ -14,10 +14,24 @@ router.get(
 );
 
 router.post(
+  "/delivery-fee",
+  // clientAuthMiddleware,
+  // authorizeRoles("client"),
+  asyncHandler(cartController.getCartDeliveryFee),
+);
+
+router.post(
   "/",
   clientAuthMiddleware,
   authorizeRoles("client"),
   asyncHandler(cartController.addCart),
+);
+
+router.post(
+  "/merge",
+  clientAuthMiddleware,
+  authorizeRoles("client"),
+  asyncHandler(cartController.mergeGuestCart),
 );
 
 router.put(
